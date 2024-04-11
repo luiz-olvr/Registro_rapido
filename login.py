@@ -3,13 +3,13 @@ from time import sleep
 from os import path
 
 NovoU = " "
+users = ' '
 dirpath = filedialog.askdirectory()
 
 # Verifica se o novo usuario já existe no sistema se existir retorna 1
 def NovoUsu():
     with open(path.join (dirpath, "listaUsu.txt"), "r", encoding="utf-8") as usuarios:
         users = usuarios.readlines()
-        print(users)
     for linha in users:
         if NovoU in linha:
             return 1
@@ -29,10 +29,13 @@ while True:
     print("[ 1 ] Mostrar usuarios")
     print("[ 2 ] Finalizar programa")
     print("*"*30)
-    escolha  = int(input("Digite sua ação: "))
-    if escolha == 0: # Criação de um novo usuario
+    escolha  = str(input("Digite sua ação: "))
+    if escolha == "0": # Criação de um novo usuario
+        sleep(0.2)
         while True:
-            NovoU = (str(input("Digite o nome de usuario: ")).strip())
+            with open(path.join (dirpath, "listaUsu.txt"), "r") as usuarios:
+                users = usuarios.readlines()
+            NovoU = (str(input(f"[ 0 ] Para parar | Usuarios registrado: {len(users)-1}\nDigite o nome de usuario: ")).strip())
             if NovoU == "0":
                 break
             va = NovoUsu()
@@ -45,17 +48,24 @@ while True:
                 with open(path.join (dirpath, "listaSen.txt"), "a") as SenhaN:
                     SenhaN.write(f"\n{senha}")
 
-    if escolha == 1: # Ler todos os usuarios criados
+    elif escolha == "1": # Ler todos os usuarios criados
         with open(path.join (dirpath, "listaUsu.txt"), "r") as usuarios:
              users = usuarios.readlines()
         with open(path.join (dirpath, "listaSen.txt"), "r") as sen:
             senhas = sen.readlines()
-       
+        sleep(0.2)
+        print("Aguarde...")
+        sleep(1.5)
         for c in range(len(users)): # Mostar todos os usuarios criados
             print(f"\nUsuario: {users[c]} | Senha: {senhas[c]}\n")
         
-    if escolha == 2: # Finalizar o programa
+    elif escolha == "2": # Finalizar o programa
+        sleep(0.2)
         print("\nFinalizando programa...\n")
         sleep(1)
         break
+    
+    else:
+        sleep(0.2)
+        print("\n\nEscolha uma opção valida!!\n\n")
                      
