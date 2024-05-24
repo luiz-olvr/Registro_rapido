@@ -38,9 +38,9 @@ def MandarEmail():
     
     msg = email.message.Message()
     msg['Subject'] = f"Mensagem automatica, não responder {users[indice]}"
-    msg['From'] = "luizrolvr@gmail.com"
+    msg['From'] = "Seu email aqui"
     msg['To'] = Gmail
-    password = "duaw hjft osqm jsai "
+    password = "Sua senha de app aqui"
     msg.add_header("Content-Type", "text/html")
     msg.set_payload(corpo_email)
     
