@@ -18,8 +18,7 @@ def NovoUsu():
         if NovoU in linha:
             return 1
     return 0
-        
-        
+
 # Verifica se o usuario existe no sistema e retorna a posição dele na lista
 def Veirficacao():
     with open(path.join (dirpath, "listaEmail.txt"), "r", encoding="utf-8") as emai:
@@ -29,29 +28,35 @@ def Veirficacao():
             return 1
     return 0
 
+def Pos(): # Retorna a posição do email na lista
+    with open(path.join(dirpath, "listaEmail.txt"), "r", encoding="utf-8") as emai:
+        Emails = emai.readlines()
+        posi=0
+        for linha in Emails:
+            posi+=1
+            if Gmail in linha:
+                return posi - 1
+
 # Mande um email para o usuario
 def MandarEmail():
     corpo_email = f"""
     <h1>Olá {users[indice]}</h1>
-    
+    <p>Você ganhou um prêmio 
+    <a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'>Clique aqui</a> e veja oq ganhou!! </p>
     """
-    
+
     msg = email.message.Message()
-    msg['Subject'] = f"Mensagem automatica, não responder {users[indice]}"
+    msg['Subject'] = f"Mensagem automatica, não responder"
     msg['From'] = "Seu email aqui"
     msg['To'] = Gmail
     password = "Sua senha de app aqui"
     msg.add_header("Content-Type", "text/html")
     msg.set_payload(corpo_email)
-    
     s = smtplib.SMTP("smtp.gmail.com: 587")
     s.starttls()
     s.login(msg["From"], password)
     s.sendmail(msg["From"],[msg["To"]], msg.as_string().encode('utf-8'))
     print("Email Enviado")
-
-
-
 
  # Criação dos arquivos base
 escolha = str(input("Deseja resetar/criar novos arquivos de Usuarios e Emails? [1] sim  "))
@@ -62,7 +67,6 @@ if escolha == "1":
         emai.write("Emails")
 
 while True:
-
     print("*"*30)
     print("[ 0 ] Registrar novo usuario ")
     print("[ 1 ] Mostrar usuarios")
@@ -102,24 +106,25 @@ while True:
         sleep(1.5)
         for c in range(len(users)): # Mostar todos os usuarios criados
             print(f"\nUsuario: {users[c]} | Email: {emai[c]}\n")
-        
-  
-                        
+
     elif escolha == "2":   # Mandar um email
         Gmail = (str(input(f"Digite seu email: ")).strip())
         va = Veirficacao()
         if va == 1:
+            indice = Pos()
+            with open(path.join (dirpath, "listaUsu.txt"), "r", encoding="utf-8") as usuarios:
+                2
+                users = usuarios.readlines()
             MandarEmail()
         else:
             print("Email não encontrado")
 
-                    
     elif escolha == "3": # Finalizar o programa
         sleep(0.2)
         print("\nFinalizando programa...\n")
         sleep(1)
         break 
-    
+
     else:
         sleep(0.2)
         print("\n\nEscolha uma opção valida!!\n\n")
