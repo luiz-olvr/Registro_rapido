@@ -48,15 +48,21 @@ while True:
         
     elif esc == 4:
         with open(path.join(dirpath, "Arquivo.txt"), "w", encoding="utf-8") as arquivo:
-            arquivo.write(f'{"Nomes":<40} {"Emails":>7}\n\n')
+           # arquivo.write(f'{"Nomes":<40} {"Emails":>7}\n\n')
             for c in range(0,len(lista)):
-                arquivo.write(f'{lista[c]['nome']: <40}  {lista[c]['email']:>7}\n')
+                arquivo.write(f'{lista[c]['nome']: <40} > {lista[c]['email']:>7}\n')
                 #arquivo.write(f'{lista[c]}\n')
-    
-
+            
     elif esc == 5:
+        with open(path.join(dirpath, "Arquivo.txt"), "r") as leitura:
+            for linha in leitura:
+                nome, email = linha.strip().split(">") 
+                lista.append({"nome": nome, "email": email})  
+
+    elif esc == 6:
         print("Encerrando programa!")
         break
 
     else:
         print("opção invalida!!")
+5
