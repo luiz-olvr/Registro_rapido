@@ -1,130 +1,62 @@
-from tkinter import filedialog
-from time import sleep
 from os import path
-import email.message
-import smtplib
-
-NovoU = " "
-indice = 0
-users = ' '
-Emails = ' '
+from tkinter import filedialog
 dirpath = filedialog.askdirectory()
 
-# Verifica se o novo usuario já existe no sistema se existir retorna 1
-def NovoUsu():
-    with open(path.join (dirpath, "listaUsu.txt"), "r", encoding="utf-8") as usuarios:
-        users = usuarios.readlines()
-    for linha in users:
-        if NovoU in linha:
-            return 1
-    return 0
+criar = int(input("Deseja criar novos arquivos[ 0 ]?\nContinuar com os antigos[ 1 ]?\nEscolha: "))
+if criar == 1:
+    pass 
 
-# Verifica se o usuario existe no sistema e retorna a posição dele na lista
-def Veirficacao():
-    with open(path.join (dirpath, "listaEmail.txt"), "r", encoding="utf-8") as emai:
-       Emails = emai.readlines()
-    for linha in Emails:
-        if Gmail in linha:
-            return 1
-    return 0
-
-def Pos(): # Retorna a posição do email na lista
-    with open(path.join(dirpath, "listaEmail.txt"), "r", encoding="utf-8") as emai:
-        Emails = emai.readlines()
-        posi=0
-        for linha in Emails:
-            posi+=1
-            if Gmail in linha:
-                return posi - 1
-
-# Mande um email para o usuario
-def MandarEmail():
-    corpo_email = f"""
-    <h1>Olá {users[indice]}</h1>
-    <p>Você ganhou um prêmio 
-    <a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'>Clique aqui</a> e veja oq ganhou!! </p>
-    """
-
-    msg = email.message.Message()
-    msg['Subject'] = f"Mensagem automatica, não responder"
-    msg['From'] = "Seu email aqui"
-    msg['To'] = Gmail
-    password = "Sua senha de app aqui"
-    msg.add_header("Content-Type", "text/html")
-    msg.set_payload(corpo_email)
-    s = smtplib.SMTP("smtp.gmail.com: 587")
-    s.starttls()
-    s.login(msg["From"], password)
-    s.sendmail(msg["From"],[msg["To"]], msg.as_string().encode('utf-8'))
-    print("Email Enviado")
-
- # Criação dos arquivos base
-escolha = str(input("Deseja resetar/criar novos arquivos de Usuarios e Emails? [1] sim  "))
-if escolha == "1":
-    with open(path.join (dirpath, "listaUsu.txt"), "w") as usuarios:
-        usuarios.write("Usuarios")
-    with open(path.join (dirpath, "listaEmail.txt"), "w") as emai:
-        emai.write("Emails")
+lista = list()
 
 while True:
-    print("*"*30)
-    print("[ 0 ] Registrar novo usuario ")
-    print("[ 1 ] Mostrar usuarios")
-    print("[ 2 ] Mandar um email")
-    print("[ 3 ] Finalizar programa")
-    print("*"*30)
-    escolha  = str(input("Digite sua ação: "))
-    if escolha == "0": # Criação de um novo usuario
-        sleep(0.2)
-        while True:
-            with open(path.join (dirpath, "listaUsu.txt"), "r") as usuarios:
-                users = usuarios.readlines()
-            NovoU = (str(input(f"\n[ 0 ] Para parar | Usuarios registrado: {len(users)-1}\nDigite o nome de usuario: ")).strip())
-            if NovoU == "0":
-                break
-            va = NovoUsu()
-            if va == 1:
-                print("\nUsuario já existente!!\n")
-                indice = Veirficacao() 
-                print(indice)
-            else:
-                email = input("Digite seu email: ").strip()
-                with open(path.join (dirpath, "listaUsu.txt"), "a")as username:
-                    username.write(f"\n{NovoU}")
-                with open(path.join (dirpath, "listaEmail.txt"), "a") as emails:
-                    emails.write(f"\n{email}")
-                    sleep(0.5)
-                    print("\nUsuario salvo")
+    print("""
+          [ 0 ] adicionar um usuario
+          [ 1 ] ver todos os usuarios
+          [ 2 ] pesquisar usuario
+          [ 3 ] deletar usuario
+          [ 4 ] gerar arquivo de texto
+          [ 5 ] encerrar programa
+         """)
+    esc = int(input("Digite a opção: "))
+    if esc == 0:
+        nome = str(input("Digite o nome do usuario: "))
+        email = str(input("Digite o email: "))
+        for c in range(0,len(lista)):
+            if  nome in lista[c]['nome'] and email in lista[c]['email']:
+                print("Usuario já existente!")
+        lista.append({"nome": nome, "email": email})
 
-    elif escolha == "1": # Ler todos os usuarios criados
-        with open(path.join (dirpath, "listaUsu.txt"), "r") as usuarios:
-             users = usuarios.readlines()
-        with open(path.join (dirpath, "listaEmail.txt"), "r") as emai:
-            emai = emai.readlines()
-        sleep(0.2)
-        print("Aguarde...")
-        sleep(1.5)
-        for c in range(len(users)): # Mostar todos os usuarios criados
-            print(f"\nUsuario: {users[c]} | Email: {emai[c]}\n")
+    elif esc == 1:
+        for c in range(0,len(lista)):
+            print(f'\nUsuario : {lista[c]['nome']} \nEmail: {lista[c]['email']}\n')
 
-    elif escolha == "2":   # Mandar um email
-        Gmail = (str(input(f"Digite seu email: ")).strip())
-        va = Veirficacao()
-        if va == 1:
-            indice = Pos()
-            with open(path.join (dirpath, "listaUsu.txt"), "r", encoding="utf-8") as usuarios:
-                2
-                users = usuarios.readlines()
-            MandarEmail()
-        else:
-            print("Email não encontrado")
+    elif esc == 2:
+        nome = str(input("Digite o nome do usuario: "))
+        email = str(input("Digite o email: "))
+        
+        for c in range(0,len(lista)):
+            if  nome in lista[c]['nome'] and email in lista[c]['email']:
+                print(lista[c])
 
-    elif escolha == "3": # Finalizar o programa
-        sleep(0.2)
-        print("\nFinalizando programa...\n")
-        sleep(1)
-        break 
+    elif esc == 3:
+        nome = str(input("Digite o nome do usuario: "))
+        email = str(input("Digite o email: "))
+    
+        for c in range(0,len(lista)):
+            if  nome in lista[c]['nome'] and email in lista[c]['email']:
+                del lista[c]
+        
+    elif esc == 4:
+        with open(path.join(dirpath, "Arquivo.txt"), "w", encoding="utf-8") as arquivo:
+            arquivo.write(f'{"Nomes":<40} {"Emails":>7}\n\n')
+            for c in range(0,len(lista)):
+                arquivo.write(f'{lista[c]['nome']: <40}  {lista[c]['email']:>7}\n')
+                #arquivo.write(f'{lista[c]}\n')
+    
+
+    elif esc == 5:
+        print("Encerrando programa!")
+        break
 
     else:
-        sleep(0.2)
-        print("\n\nEscolha uma opção valida!!\n\n")
+        print("opção invalida!!")
