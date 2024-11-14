@@ -8,7 +8,7 @@ def Inicio():
     criar = int(input("Deseja criar novos arquivos[ 0 ]?\nContinuar com os antigos[ 1 ]?\nEscolha: "))
     if criar == 1:
         dirpath = filedialog.askdirectory()
-        with open(path.join(dirpath, "Arquivo.txt"), "r") as leitura:
+        with open(path.join(dirpath, "Registros.txt"), "r") as leitura:
             for linha in leitura:
                 nome, email = linha.strip().split(">") 
                 lista.append({"nome": nome, "email": email})  
@@ -52,7 +52,7 @@ def DeletarUser():
 
 def GerarArquivo():
     dirpath = filedialog.askdirectory()
-    with open(path.join(dirpath, "Arquivo.txt"), "w", encoding="utf-8") as arquivo:
+    with open(path.join(dirpath, "Registros.txt"), "w", encoding="utf-8") as arquivo:
             for c in range(0,len(lista)):
                 arquivo.write(f'{lista[c]['nome']: <40} > {lista[c]['email']:>7}\n')
             
