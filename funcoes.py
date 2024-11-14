@@ -1,6 +1,5 @@
 from os import path
 from tkinter import filedialog
-
 lista = list()
 
 
@@ -13,25 +12,24 @@ def Inicio():
                 nome, email = linha.strip().split(">") 
                 lista.append({"nome": nome, "email": email})  
 
-
 def AdicionarUser():
-    while nome  or email != "0":
-        print("Digite 0 Para sair!!!")  
-        nome = str(input("Digite o nome do usuario: "))
-        email = str(input("Digite o email: "))
-        if nome or email == "0":
-            break
-        for c in range(0,len(lista)):
-            if  nome in lista[c]['nome'] and email in lista[c]['email']:
-                print("Usuario já existente!")
-        lista.append({"nome": nome, "email": email})
+            print("Digite 0 Para sair!!!")  
+            nome = str(input("Digite o nome do usuario: "))
+            email = str(input("Digite o email: "))
+            if nome == '0' or email == '0':
+                return 1
+            for c in range(0,len(lista)):
+                if  nome in lista[c]['nome'] and email in lista[c]['email']:
+                    print("Usuario já existente!")
+            lista.append({"nome": nome, "email": email})
+
 
 def ListaUser():
      for c in range(0,len(lista)):
         print(f'\nUsuario : {lista[c]['nome']} \nEmail: {lista[c]['email']}\n')
-            
-            
-            
+
+
+
 def PesquisaUser():
     nome = str(input("Digite o nome do usuario: "))
     email = str(input("Digite o email: "))

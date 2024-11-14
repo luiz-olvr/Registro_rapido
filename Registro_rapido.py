@@ -13,19 +13,21 @@ while True:
          """)
     
     esc = int(input("Digite a opção: "))
-    
     if esc == 0:
-        AdicionarUser()
+        while True:
+            if AdicionarUser() == 1:
+                break
+
         
     elif esc == 1:
         ListaUser()
-    
+
     elif esc == 2:
         PesquisaUser()
-    
+
     elif esc == 3:
         DeletarUser()
-    
+
     elif esc == 4:
         GerarArquivo()
                 
