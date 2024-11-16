@@ -19,8 +19,8 @@ def AdicionarUser():
             if nome == '0' or email == '0':
                 return 1
             for c in range(0,len(lista)):
-                if  nome in lista[c]['nome'] and email in lista[c]['email']:
-                    print("Usuario já existente!")
+                if email in lista[c]['email']:
+                    print("Email já cadastrado!!!")
             lista.append({"nome": nome, "email": email})
 
 
