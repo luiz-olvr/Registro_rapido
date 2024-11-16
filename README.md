@@ -60,7 +60,7 @@ Este projeto é um **gerenciador de usuários baseado em terminal**, desenvolvid
    - **Windows**:  
      ```bash
      python -m venv Registro_rapido  
-     Registro_rapido\Scripts\activate
+     Registro_rapido\Scripts\activate.ps1
      ```  
    - **Linux/Mac**:  
      ```bash
