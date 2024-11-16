@@ -16,9 +16,6 @@ Este projeto é um **gerenciador de usuários baseado em terminal**, desenvolvid
 
 ---
 
-## 🛠️ **Pré-requisitos**  
-- **Python 3.x** instalado no sistema.  
-- Ambiente virtual configurado para isolar as dependências do projeto.  
 
 ---
 
@@ -40,6 +37,11 @@ Este projeto é um **gerenciador de usuários baseado em terminal**, desenvolvid
 
 <details>
  <summary> 🚀 Como executar o código-fonte  </summary>
+
+## 🛠️ **Pré-requisitos**
+- **Python 3.x** instalado no sistema.  
+- Ambiente virtual configurado para isolar as dependências do projeto.  
+
 ## 📦 **Como baixar e configurar o projeto**  
 
 ### **1. Baixando o repositório**  
@@ -104,15 +106,10 @@ Este projeto é um **gerenciador de usuários baseado em terminal**, desenvolvid
 - **Interface Simples**: Menu baseado em texto, ideal para iniciantes.
 - **Interação com o Sistema**: Uso do `tkinter` para selecionar diretórios e trabalhar com caminhos de arquivos.
 
-#### **Melhorias futuras**
-- Implementação de validação mais robusta para entradas do usuário.
-- Substituição do formato de texto simples por CSV para maior compatibilidade.
-- Melhor formatação de exibição e gravação de dados.
-- Adição de testes automatizados para garantir a estabilidade do programa.
 
 ---
 
-💻 Desenvolvido com foco em aprendizado e simplicidade!
+💻 Desenvolvido com foco em aprendizado e simplicidade!<br>
 💻 **Contribuições e sugestões são sempre bem-vindas!**
 
 Caso ache algum erro contate:
